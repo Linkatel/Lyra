@@ -1,6 +1,5 @@
 package nodes;
 
-// send "a"
 public class SendNode extends Node {
     public final Node value;
 

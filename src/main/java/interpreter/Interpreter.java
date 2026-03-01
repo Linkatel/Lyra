@@ -2,6 +2,7 @@ package interpreter;
 
 import exceptions.LyraException;
 import exceptions.LyraFunctionNotFoundException;
+import exceptions.ReturnException;
 import nodes.*;
 
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class Interpreter {
             System.out.println(value);
             return null;
         } else if (node instanceof SendNode s) {
-
+            throw new ReturnException(execute(s.value));
         } else if (node instanceof BinaryNode b) {
             Object left = execute(b.left);
             Object right = execute(b.right);
@@ -85,8 +86,12 @@ public class Interpreter {
                 variables.put(f.params.get(i), execute(c.args.get(i)));
             }
 
-            for (Node n : f.body) {
-                execute(n);
+            try {
+                for (Node n : f.body) {
+                    execute(n);
+                }
+            } catch (ReturnException r) {
+                return r.value;
             }
             return null;
         }
