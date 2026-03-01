@@ -1,0 +1,9 @@
+create main()
+set x = 'c' * 4
+set y = 'capoca' - 'po'
+send x + y
+end
+
+show main()
+
+

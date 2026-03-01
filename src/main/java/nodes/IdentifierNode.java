@@ -1,0 +1,10 @@
+package nodes;
+
+// nb, main...
+public class IdentifierNode extends Node {
+    public final String name;
+
+    public IdentifierNode(String name) {
+        this.name = name;
+    }
+}
